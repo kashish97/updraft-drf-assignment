@@ -15,8 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from accounts.views import AccountViewSet
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api-auth/", include("rest_framework.urls")),
+    path('accounts/', AccountViewSet.as_view({'get': 'list'}), name='account-list'),
+    path('accounts/<int:pk>/', AccountViewSet.as_view({'get': 'retrieve'}), name='account-retrieve'),
+
+
 ]
